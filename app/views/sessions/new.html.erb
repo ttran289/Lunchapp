@@ -1,0 +1,44 @@
+
+<div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand"><%= link_to 'LunchVote', root_path%></div>
+    </div>
+    
+      <ul class="nav navbar-nav">
+        <%if !current_user%>
+        <li><%= link_to 'Go to an existing room', rooms_path%></li>
+        <%else%>
+         <li><%=link_to "Create a New Room", new_room_path %></li>
+         <li><%= link_to 'Go to existing rooms', rooms_path%></li>
+         <%end%>
+      </ul>
+      <div class="navbar-brand">A vote away from a happy meal</div>
+      
+        <ul class="nav navbar-nav navbar-right">
+        	<% if !current_user %>
+  	        <li><%= link_to "Sign Up", new_user_path%></li>
+  	        <li><%= link_to "Sign in", new_sessions_path%></li> 
+            <% else %>
+            <li>Hello, <%= current_user.name%></li>
+          	<li><%= link_to "Sign out", sessions_path, :method => :delete %></li>
+
+            <%end%>
+        </ul>
+     <!--nav bar collapse-->
+ </div><!-- /.container-fluid -->
+
+
+<h1>Login</h1>
+<form role ="form">
+	<div class ="form-group">
+		<div class="col-xs-4">
+			<%= form_for :session, :url => sessions_path do |l| %>
+			  Email: <%= l.text_field :email, class: "form-control" %>
+			  Password: <%= l.password_field :password,class: "form-control" %>
+			  <br/>
+			  <%= l.submit "Login" %>
+			<% end %>
+		</div>
+	</div>
+</form>
+

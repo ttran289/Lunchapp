@@ -1,0 +1,60 @@
+
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <div class="navbar-brand"><%= link_to 'LunchVote', root_path%></div>
+    </div>
+    
+      <ul class="nav navbar-nav">
+        <%if !current_user%>
+        <li><%= link_to 'Go to an existing room', rooms_path%></li>
+        <%else%>
+         <li><%=link_to "Create a New Room", new_room_path %></li>
+         <li><%= link_to 'Go to an existing room', rooms_path%></li>
+         <%end%>
+      </ul>
+      
+        <ul class="nav navbar-nav navbar-right">
+        	<% if !current_user %>
+  	        <li><%= link_to "Sign Up", new_user_path%></li>
+  	        <li><%= link_to "Sign in", new_sessions_path%></li> 
+            <% else %>
+            <li>Hello, <%= current_user.name%></li>
+          	<li><%= link_to "Sign out", sessions_path, :method => :delete %></li>
+
+            <%end%>
+        </ul>
+     <!--nav bar collapse-->
+  </div><!-- /.container-fluid -->
+
+<h2><%=@room.name%></h2>  
+
+<h3>These are the suggestion for Lunch!!</h3>
+<div class="row">
+	<% @room.lunches.each do |l| %>
+		<div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <div class="caption">
+		        
+				<p>I would like to go to <%=l.name%> for lunch</p>
+				<p>Time <%=l.time%>
+				<p>Date <%=l.date%>	
+					
+					<p>Votes:<%= l.votes_count  %></p>
+
+		        <% if !current_user%>
+		        <p>sign in to upvote this sugestion</p>
+            <%else%>
+            <%= link_to 'Upvote', lunch_up_vote_path(:room_id => @room.id,:id =>l)%>
+		        <%= link_to 'Delete',room_lunch_path(@room,l.id),method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%end%>
+		      </div>
+		    </div>
+		</div>
+	<% end %>
+</div>
+<ul>
+	<li><%= link_to "Lunch suggestion", new_room_lunch_path(@room.id) %></li>
+	<li><%= link_to "Room list", rooms_path%></li>
+
+</ul>

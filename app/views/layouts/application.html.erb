@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lunchvote</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <section  id="Parallax-one">
+    <div class="container-fuild">
+            <div class="row text-center">
+                <div class="col-md-8 col-md-offset-2 ">
+                    <h1>Lunch Vote </h1>
+                    <h4>
+                        <strong>A happy meal is a vote away
+                        </strong>
+                    </h4>
+                </div>
+            </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  <%= yield %>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand"><%= link_to 'LunchVote', root_path%></div>
+    </div>
+    
+      <ul class="nav navbar-nav">
+        <%if !current_user%>
+        <li><%= link_to 'Go to an existing room', rooms_path%></li>
+        <%else%>
+         <li><%=link_to "Create a New Room", new_room_path %></li>
+         <li><%= link_to 'Go to existing rooms', rooms_path%></li>
+         <%end%>
+      </ul>
+      <div class="navbar-brand">A vote away from a happy meal</div>
+      
+        <ul class="nav navbar-nav navbar-right">
+        	<% if !current_user %>
+  	        <li><%= link_to "Sign Up", new_user_path%></li>
+  	        <li><%= link_to "Sign in", new_sessions_path%></li> 
+            <% else %>
+            <li>Hello, <%= current_user.name%></li>
+          	<li><%= link_to "Sign out", sessions_path, :method => :delete %></li>
+
+            <%end%>
+        </ul>
+     <!--nav bar collapse-->
+     <br>
+     <br>
+
+<h3>New User</h3>
+<form role ="form" class = "text-center">
+	<div class ="form-group" >
+		<div class = "col-xs-4" >
+			<%= form_for @user do |f| %>
+			  Name: <%= f.text_field :name %>
+			  <br>
+			  <br>
+			  Email: <%= f.text_field :email %>
+			  <br>
+			  <br>
+			  Password: <%= f.password_field :password %>
+			  <%= f.submit "Join the fun!" %>
+			<% end %>
+		</div>
+	</div>
+</form>

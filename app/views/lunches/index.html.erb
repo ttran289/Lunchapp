@@ -1,0 +1,26 @@
+<h1>These are the , please vote!!!</h1>
+
+<div class="row">
+	<%= @lunches.each do |l| %>
+		<div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <img data-src="holder.js/300x200" alt="...">
+		      <div class="caption">
+		        <h3>Vote Please</h3>
+		        
+	        
+				<p>I would like to go to <%=l.name%> for lunch</p>
+				<p>At <%=l.time%>
+				<p>On <%=l.date%>	
+				
+		        <p><a href="#" class="btn btn-primary" role="button">Upvote</a> <a href="#" class="btn btn-default" role="button">Downvote</a></p>
+		      </div>
+		    </div>
+		</div>
+	<% end %>
+</div>
+<br/>
+<br/>
+<br/>
+<%=link_to "We need more suggestion!!", new_room_lunch_path %>
+

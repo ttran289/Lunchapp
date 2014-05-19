@@ -1,0 +1,48 @@
+  <section >
+    <div class="container">
+        <div class="row">
+          <%if !current_user%>
+            <div class="col-md-6 col-md-offset-5">
+                <%= link_to 'The Rooms', rooms_path%>
+            </div>
+            <%else%>
+            <div class="col-sm-6  col-md-6">
+                    <%=link_to "New Room", new_room_path %>
+            </div>
+            <div class="col-sm-6 col-md-6 ">
+                <%= link_to 'The Rooms', rooms_path%>
+            </div>
+            <%end%>
+           </div>
+        <div class = "row">
+            <div class="col-sm-6 col-md-4 ">
+              <div>Number of Rooms created</div>
+            </div>
+
+          <div class="col-sm-6 col-md-4 ">
+            <div>Number of suggestions</div>
+          </div>
+          <div class="col-sm-6 col-md-4 ">
+            <div>Number of votes</div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+<section  id="Parallax-two">
+  <div class="container-fluild">
+    <div class="col-md-6 col-md-offset-5">
+      <% if !current_user %>
+        <%= link_to "Sign Up", new_user_path, class: "btn btn-primary" %> 
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <%= link_to "Sign in", new_sessions_path, class: "btn btn-primary"%>
+      <% else %>
+        <p>Hello, <%= current_user.name%></p>
+        <%= link_to "Sign out", sessions_path, :method => :delete, class: "btn btn-primary" %>
+      <%end%>
+    </div>
+  </div>
+</section>
